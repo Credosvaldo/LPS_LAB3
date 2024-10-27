@@ -31,33 +31,25 @@ class AddressServiceTest {
 
     @Test
     void testFindAll() {
-        // Mock some addresses
         List<Address> addresses = Arrays.asList(new Address(), new Address());
 
-        // Mock the repository call
         when(addressRepository.findAll()).thenReturn(addresses);
 
-        // Call the service method
         List<Address> result = addressService.findAll();
 
-        // Verify results
         assertEquals(2, result.size());
         verify(addressRepository, times(1)).findAll();
     }
 
     @Test
     void testFindById_Found() {
-        // Mock an Address
         Address address = new Address();
         address.setId(1L);
 
-        // Mock the repository call
         when(addressRepository.findById(1L)).thenReturn(Optional.of(address));
 
-        // Call the service method
         Address result = addressService.findById(1L);
 
-        // Verify results
         assertNotNull(result);
         assertEquals(1L, result.getId());
         verify(addressRepository, times(1)).findById(1L);
@@ -65,31 +57,24 @@ class AddressServiceTest {
 
     @Test
     void testFindById_NotFound() {
-        // Mock the repository call to return empty
         when(addressRepository.findById(1L)).thenReturn(Optional.empty());
 
-        // This will throw an exception since we're using `.get()` in the service
         assertThrows(java.util.NoSuchElementException.class, () -> {
             addressService.findById(1L);
         });
 
-        // Verify repository was called
         verify(addressRepository, times(1)).findById(1L);
     }
 
     @Test
     void testSave() {
-        // Mock an Address
         Address address = new Address();
         address.setId(1L);
 
-        // Mock the repository save call
         when(addressRepository.save(address)).thenReturn(address);
 
-        // Call the service method
         Address result = addressService.save(address);
 
-        // Verify results
         assertNotNull(result);
         assertEquals(1L, result.getId());
         verify(addressRepository, times(1)).save(address);

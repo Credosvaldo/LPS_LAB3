@@ -42,18 +42,14 @@ class JwtTokenProviderTest {
 
     @Test
     void testGenerateToken_Success() {
-        // Arrange
         String username = "testUser";
         when(authentication.getPrincipal()).thenReturn(userDetails);
         when(userDetails.getUsername()).thenReturn(username);
 
-        // Act
         String token = jwtTokenProvider.generateToken(authentication);
 
-        // Assert
         assertNotNull(token);
 
-        // Optional: Parse the token to check if it contains the expected values
         String parsedUsername = JWT.require(Algorithm.HMAC512(secretKey.getBytes()))
                 .build()
                 .verify(token)
@@ -65,20 +61,16 @@ class JwtTokenProviderTest {
 
     @Test
     void testGenerateToken_Expiry() {
-        // Arrange
         String username = "testUser";
         Instant now = Instant.now();
         Date expectedExpiryDate = Date.from(now.plusMillis(expirationMinutes * 60 * 1000L));
         when(authentication.getPrincipal()).thenReturn(userDetails);
         when(userDetails.getUsername()).thenReturn(username);
 
-        // Act
         String token = jwtTokenProvider.generateToken(authentication);
 
-        // Assert
         assertNotNull(token);
 
-        // Optional: Check expiry date in the token
         Date actualExpiryDate = JWT.require(Algorithm.HMAC512(secretKey.getBytes()))
                 .build()
                 .verify(token)

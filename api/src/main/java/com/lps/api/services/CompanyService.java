@@ -31,6 +31,16 @@ public class CompanyService {
     }
 
     public Company save(Company company) {
+        if(company.getName().isEmpty()) {
+            throw new IllegalArgumentException("Nome da empresa não pode ser vazio");	
+        }
+        if(company.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email da empresa não pode ser vazio");	
+        }
+        if(company.getPassword().length() < 6) {
+            throw new IllegalArgumentException("Senha da empresa tem que ter ao menos 6 digitos");	
+        }
+
         var newPassword = encoder.encode(company.getPassword());
         company.setPassword(newPassword);
         
@@ -43,14 +53,20 @@ public class CompanyService {
 
     public Company updateCompany(Long id, Company company) {
         Optional<Company> existingCompany = companyRepository.findById(id);
-        if (existingCompany.isPresent()) {
-            Company updatedCompany = existingCompany.get();
-            updatedCompany.setName(company.getName());
 
-            return companyRepository.save(updatedCompany);
-        } else {
+        if (!existingCompany.isPresent()) {
             throw new RuntimeException("Professor not found with id " + id);
         }
+
+        if(company.getName().isEmpty()) {
+            throw new IllegalArgumentException("Nome da empresa não pode ser vazio");	
+        }
+        
+        Company updatedCompany = existingCompany.get();
+        updatedCompany.setName(company.getName());
+
+        return companyRepository.save(updatedCompany);
+ 
     }
 
 }

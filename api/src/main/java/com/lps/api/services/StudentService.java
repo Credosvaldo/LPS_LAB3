@@ -53,8 +53,7 @@ public class StudentService {
         Course course = courseService.findById(studentDTO.courseId());
         Student student = StudentMapper.toStudent(studentDTO, course);
 
-        if (student.getName() == null || student.getName().isEmpty() ||
-                student.getCpf() == null || student.getCpf().isEmpty()) {
+        if (!isStudentValid(student)) {
             throw new IllegalArgumentException("Name and CPF are required fields");
         }
 
@@ -73,6 +72,11 @@ public class StudentService {
 
     public void delete(Student student) {
         studentRepository.delete(student);
+    }
+
+    private boolean isStudentValid(Student student) {
+        return student.getName() != null && !student.getName().isEmpty() &&
+                student.getCpf() != null && !student.getCpf().isEmpty();
     }
 
 }
