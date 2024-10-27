@@ -33,6 +33,7 @@ public class ProfessorService {
         professorRepository.deleteById(id);
     }
 
+    // Adicione um método privado para validar os dados do professor antes de salvar
     public Professor updateProfessor(Long id, Professor professor) {
         Optional<Professor> existingProfessor = professorRepository.findById(id);
         if (existingProfessor.isPresent()) {

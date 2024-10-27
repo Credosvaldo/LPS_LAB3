@@ -20,10 +20,12 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
+    // Retornar Optional para evitar null pointer exception
     public Course findById(Long id) {
         return courseRepository.findById(id).get();
     }
 
+    // Retornar Optional para evitar null pointer exception
     public Course findByName(String name) {
         return courseRepository.findByName(name);
     }

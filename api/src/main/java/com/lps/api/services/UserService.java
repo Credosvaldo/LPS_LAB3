@@ -84,6 +84,8 @@ public class UserService {
 
     public void createPasswordResetTokenForUser(Long id, String token) {
         User user = this.getById(id);
+
+        // Renomear Basetoken para baseToken para seguir as convenções de nomenclatura java 
         PasswordResetToken Basetoken = passwordTokenRepository.findByUser(user);
         PasswordResetToken myToken;
         if (Basetoken == null) {
@@ -96,6 +98,7 @@ public class UserService {
         passwordTokenRepository.save(myToken);
     }
 
+    // Retornar Optional para evitar null pointer exception
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

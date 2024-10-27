@@ -36,14 +36,17 @@ public class StudentService {
         return studentRepository.findByCourse_Name(course);
     }
 
+    // Retornar Optional para evitar null pointer exception
     public Student findById(Long id) {
         return studentRepository.findById(id).get();
     }
 
+    // Retornar Optional para evitar null pointer exception
     public Student findByEmail(String email) {
         return studentRepository.findByEmail(email);
     }
 
+    // Retornar Optional para evitar null pointer exception
     public Student findByCpf(String cpf) {
         return studentRepository.findByCpf(cpf);
     }
@@ -53,6 +56,7 @@ public class StudentService {
         Course course = courseService.findById(studentDTO.courseId());
         Student student = StudentMapper.toStudent(studentDTO, course);
 
+        // Transformar em um metodo privado a validação de estudante para melhorar a clareza e reutilização de código, princípio da responsabilidade única (SRP)
         if (student.getName() == null || student.getName().isEmpty() ||
                 student.getCpf() == null || student.getCpf().isEmpty()) {
             throw new IllegalArgumentException("Name and CPF are required fields");
