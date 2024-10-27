@@ -47,6 +47,8 @@ public class EmailSenderService {
         String mailFrom = environment.getProperty("spring.email.properties.email.smtp.from");
         String mailFromName = "Lab Prog System";
 
+
+        // Extraí a lógica comum de criação de MimeMessage para um método privado, reduzindo a duplicação de código
         final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
 
         final MimeMessageHelper emailWillBeSend;

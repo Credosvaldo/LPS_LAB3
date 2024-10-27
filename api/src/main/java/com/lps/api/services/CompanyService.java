@@ -26,10 +26,12 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
+    // Retornar Optional para evitar null pointer exception
     public Company findById(Long id) {
         return companyRepository.findById(id).orElse(null);
     }
 
+    // Adicionar uma validação de dados antes de salvar a empresa
     public Company save(Company company) {
         var newPassword = encoder.encode(company.getPassword());
         company.setPassword(newPassword);
@@ -41,6 +43,7 @@ public class CompanyService {
         companyRepository.deleteById(id);
     }
 
+    // Adicionar uma validação de dados antes de atualizar a empresa
     public Company updateCompany(Long id, Company company) {
         Optional<Company> existingCompany = companyRepository.findById(id);
         if (existingCompany.isPresent()) {

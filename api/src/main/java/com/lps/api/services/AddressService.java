@@ -21,10 +21,12 @@ public class AddressService {
         return addressRepository.findAll();
     }
 
+    // Retornar Optional para evitar null pointer exception
     public Address findById(Long id) {
         return addressRepository.findById(id).get();
     }
 
+    // Retornar Optional para evitar null pointer exception e adicionar uma validação de dados antes de salvar o endereço 
     public Address save(Address address) {
         return addressRepository.save(address);
     }
