@@ -54,7 +54,7 @@ public class AuthControllerTest {
     public void testAuthenticateUser() {
         LoginRequest loginRequest = new LoginRequest("test@example.com", "password");
         Authentication authentication = mock(Authentication.class);
-        User user = new NaturalPerson(); // Assuming NaturalPerson extends User
+        User user = new NaturalPerson();
 
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenReturn(authentication);

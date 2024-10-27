@@ -26,7 +26,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // Desativa CSRF
+                .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .authorizeHttpRequests(authz -> authz
@@ -47,11 +47,9 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**").permitAll())
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
-                //
-                //
-                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())); // Disable
-                                                                                                   // X-Frame-Options
-                                                                                                   // for h2-console
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())); 
+                                                                                                   
+                                                                                                   
 
         return http.build();
     }

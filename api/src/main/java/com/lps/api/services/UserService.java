@@ -84,12 +84,12 @@ public class UserService {
 
     public void createPasswordResetTokenForUser(Long id, String token) {
         User user = this.getById(id);
-        PasswordResetToken Basetoken = passwordTokenRepository.findByUser(user);
+        PasswordResetToken basetoken = passwordTokenRepository.findByUser(user);
         PasswordResetToken myToken;
-        if (Basetoken == null) {
+        if (basetoken == null) {
             myToken = new PasswordResetToken(null, token, user);
         } else {
-            myToken = Basetoken;
+            myToken = basetoken;
             myToken.setToken(token);
         }
 
