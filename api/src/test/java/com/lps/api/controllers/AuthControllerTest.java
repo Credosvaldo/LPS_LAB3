@@ -65,7 +65,7 @@ public class AuthControllerTest {
 
         assertEquals(200, response.getStatusCode().value());
         LoginResponse loginResponse = (LoginResponse) response.getBody();
-        assertEquals("isStudentOrTeacher", loginResponse.getUserType());
+        assertEquals("isTeacher", loginResponse.getUserType());
     }
 
     @Test

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Delete, Edit } from '@mui/icons-material';
 import { Alert, Button, CircularProgress, IconButton, Typography } from '@mui/material';
-import { Box, Container } from '@mui/system';
+import { Box, Container, margin } from '@mui/system';
 import { MaterialReactTable, useMaterialReactTable, type MRT_ColumnDef } from 'material-react-table';
 import { ConfirmModal } from '../../components/ConfirmModal';
 import { useNotification } from '../../hooks/useNotification';
@@ -149,7 +149,7 @@ export const EnterpriseDashboard = () => {
 
     return (
         <>
-            <Container>
+            <Container style={{ marginLeft: '282px' }}>
                 <header className="grid grid-rows-2 grid-flow-col gap-4 grid-cols-4">
                     <Typography variant="h4" className="col-span-4">
                         Dashboard - Vantagens
