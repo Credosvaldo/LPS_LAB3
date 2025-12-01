@@ -72,10 +72,12 @@ public class WebConfig implements WebMvcConfigurer, CommandLineRunner {
 
         @Override
         public void run(String... args) throws Exception {
-                if(!activeProfile.equals("test")) {
+                // Não executar em ambiente de teste - os testes criam seus próprios dados
+                if(!activeProfile.equals("show")) {
                         return;
                 }
 
+                // Dados de inicialização para desenvolvimento/produção
                 Company company1 = new Company(null, "Empresa1", "empresa1@gmail.com", "123");
                 companyService.save(company1);
                 
