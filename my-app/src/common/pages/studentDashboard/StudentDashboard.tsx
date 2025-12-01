@@ -60,7 +60,7 @@ const StudentDashboard: React.FC = () => {
     if (error) return <Alert severity="error">{error}</Alert>;
 
     return (
-        <Container>
+        <Container style={{ marginLeft: '282px' }}>
             <LeftNavigationMenu onLogout={handleLogout} userName={student.name || 'User'} />
             <Typography variant="h4" gutterBottom>Student Dashboard</Typography>
 

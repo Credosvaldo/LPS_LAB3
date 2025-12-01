@@ -104,7 +104,7 @@ const Extrato: React.FC = () => {
     if (error) return <Alert severity="error">{error}</Alert>;
 
     return (
-        <Container>
+        <Container style={{ marginLeft: '282px' }}>
             <LeftNavigationMenu onLogout={handleLogout} userName={user?.name || 'User'} />
             <Typography variant="h4" gutterBottom>Extrato</Typography>
             <TextField

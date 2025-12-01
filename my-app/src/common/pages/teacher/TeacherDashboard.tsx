@@ -67,7 +67,7 @@ const TeacherDashboard: React.FC = () => {
     if (error) return <Alert severity="error">{error}</Alert>;
 
     return (
-        <Container>
+        <Container style={{ marginLeft: '282px' }}>
             <LeftNavigationMenu onLogout={handleLogout} userName={professor.name || 'User'} />
             <Typography variant="h4" gutterBottom>Teacher Dashboard</Typography>
 
